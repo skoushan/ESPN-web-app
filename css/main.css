@@ -97,10 +97,15 @@ textarea {
    Author's custom styles
    ========================================================================== */
 #article-feed {
-    
 }
-#article-feed tr {
+#article-feed .article {
+    clear: both;
+    text-decoration: none;
+    max-width: 400px;
+    height:100px;
     opacity:0;
+    line-height: 0;
+    overflow: hidden;
     animation:expandDownFadeIn ease-in 1;
     -webkit-animation:expandDownFadeIn ease-in 1;
 
@@ -127,29 +132,55 @@ textarea {
 }
 @-webkit-keyframes expandDownFadeIn {
     0% {
+        line-height: 0;
         height:0px;
         opacity:0;
     }
     50% {
+        line-height: normal;
         height:100px;
         opacity:0;
     }
     100% {
+        line-height: normal;
         height:100px;
         opacity: 1;
     }
 }
-#article-feed td.thumbnail {
-    width: 100px;
+#article-feed .thumbnail {
+    width: 25%;
+    height: 100%;
+    float: left;
     background-position: center center;
     background-size: cover;
 }
 
-
-
-
-
-
+span.date:after {
+    content: " - ";
+}
+.headline {
+    display: block;
+    text-decoration: none;
+    padding-bottom: 0.2em;
+    font-weight: bold;
+    color: #202020;
+    font-size:1em;
+}
+.details {
+    float:left;
+    box-sizing:border-box;
+    width:75%;
+    padding: 0.4em 0.8em;
+}
+.date, .source {
+    color: #646464;
+    font-size: 0.8em;
+}
+.description {
+    display: block;
+    font-size:0.8em;
+    padding-top:0.4em;
+}
 
 
 
