@@ -81,7 +81,9 @@ function printArticles(articles){
         $('#' + articleID + ' .details').append($('<span>', {text: date, class:'date'}));
         $('#' + articleID + ' .details').append($('<span>', {text: article.source, class:'source'}));
 
-        var description = article.description.substr(0,30);
+        var description = "";
+        if(article.description)
+            description = article.description.substr(0,30);
         description = description.substr(0,description.lastIndexOf(' ')) + "...";
         // $('#' + articleID + ' .details').append($('<span>', {text: description, class:'description'}));
     });

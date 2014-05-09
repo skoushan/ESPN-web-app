@@ -1,5 +1,4 @@
 //http://stackoverflow.com/questions/4662641/how-do-i-verify-jquery-ajax-events-with-jasmine
-
 //jasmine.getFixtures().fixturesPath = 'spec/fixtures';
 
 
@@ -62,7 +61,17 @@ describe("printArticles", function(){
 
 	it("should print in order", function(){
 		printArticles([article4, article2, article0, article1, article3]);
-		var article_feed = document.getElementById('article-feed');
-		expect(article_feed.length).toEqual(5);
+		var articles = [];
+		$('#article-feed .article').each(function(i,v){
+			var id = $(this).attr('id');
+			id = id.substr(id.indexOf('-') + 1, id.length);
+			console.log(id);
+			articles.push(parseInt(id));
+		});
+		expect(articles[0]).toEqual(article4.id);
+		expect(articles[1]).toEqual(article3.id);
+		expect(articles[2]).toEqual(article2.id);
+		expect(articles[3]).toEqual(article1.id);
+		expect(articles[4]).toEqual(article0.id);
 	});
 });
