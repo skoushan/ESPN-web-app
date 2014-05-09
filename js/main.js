@@ -1,5 +1,39 @@
 // reference: https://software.intel.com/en-us/html5/articles/how-to-access-JSON-data-in-HTML5-apps
 // https://software.intel.com/en-us/html5/articles/how-to-access-JSON-data-in-HTML5-apps
+
+// function getArticles(json_url, data, callback){
+//     $.getJSON(json_url,)
+// }
+
+// callback introduction: http://callbackhell.com/
+
+var API_BASE = "http://api.espn.com/v1/";
+var API_PATH = "sports/news";
+var API_NAME = "apikey";
+var API_KEY = "72hur4sdsjdbghuynm3z2t2k";
+var FULL_URL = API_BASE + API_PATH + "?" + API_NAME + "=" + API_KEY;
+
+function getArticles(JSON_url, callback) {
+    $.getJSON(JSON_url)
+        .done(function(json){
+            var articles = json['headlines'];
+            alert("done");
+            callback(articles);
+        })
+        .fail(function(jqxhr, textStatus, error){
+            var err = textStatus + ", " + error;
+            console.log("Request Failed: " + error);
+            // $('#article-feed').text("<p style='color:red'>Unable to retrieve articles :(</p>");
+            alert("fail");
+            callback(null);
+    });
+}
+
+function determineChangedArticles() {
+
+}
+
+
 function printArticles(oldArticles){
     $.getJSON('http://api.espn.com/v1/sports/news?apikey=72hur4sdsjdbghuynm3z2t2k', function(data) {
         var newArticles = data['headlines'];
@@ -53,5 +87,6 @@ function printArticles(oldArticles){
 }
 
 $(document).ready(function(){ 
+    getArticles("hh", alert);
     printArticles(null);
 });
