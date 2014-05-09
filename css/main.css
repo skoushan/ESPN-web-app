@@ -162,7 +162,7 @@ span.date:after {
     display: block;
     text-decoration: none;
     padding-bottom: 0.2em;
-    font-weight: bold;
+    font-weight:600;
     color: #202020;
     font-size:1em;
 }
@@ -170,7 +170,7 @@ span.date:after {
     float:left;
     box-sizing:border-box;
     width:75%;
-    padding: 0.4em 0.8em;
+    padding: 0.5em 0.8em;
 }
 .date, .source {
     color: #646464;
