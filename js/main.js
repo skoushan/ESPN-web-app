@@ -55,7 +55,7 @@ function printArticles(articles){
     var default_img = "http://a.espncdn.com/i/espn/espn_logos/espn_red.png";
     
     articles.sort(function(a,b){
-        return new Date(a.published) - new Date(b.published);
+        return new Date(a.lastModified) - new Date(b.lastModified);
     });
 
     $.each(articles, function(index, article){
@@ -76,12 +76,14 @@ function printArticles(articles){
         }
         $('#' + articleID + ' .details').append($('<a>', {text: article.headline, class:'headline', href:url}));
         
-        var date = moment(article.published).fromNow();
+        var date = moment(article.lastModified).fromNow();
       
         $('#' + articleID + ' .details').append($('<span>', {text: date, class:'date'}));
         $('#' + articleID + ' .details').append($('<span>', {text: article.source, class:'source'}));
 
-        var description = article.description.substr(0,30);
+        var description = "";
+        if(article.description)
+            description = article.description.substr(0,30);
         description = description.substr(0,description.lastIndexOf(' ')) + "...";
         // $('#' + articleID + ' .details').append($('<span>', {text: description, class:'description'}));
     });
